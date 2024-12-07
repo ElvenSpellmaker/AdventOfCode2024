@@ -15,9 +15,9 @@ function performMaths(array $parts, int $pos, int $total, int $carry) : bool
 	$two = $carry * $parts[$newPos];
 	$three = $carry . $parts[$newPos];
 
-	return performMaths($parts, $newPos, $total, $one)
-		|| performMaths($parts, $newPos, $total, $two)
-		|| performMaths($parts, $newPos, $total, $three);
+	return ($one <= $total && performMaths($parts, $newPos, $total, $one))
+		|| ($two <= $total && performMaths($parts, $newPos, $total, $two))
+		|| ($three <= $total && performMaths($parts, $newPos, $total, $three));
 }
 
 $sum = 0;
